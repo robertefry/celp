@@ -32,8 +32,8 @@ namespace celp {
 
 }
 
-#ifndef _CELP_NUMBER_primesieve_CC
-#define _CELP_NUMBER_primesieve_CC
+#ifndef _CELP_NUMBER_PRIMESIEVE_CC
+#define _CELP_NUMBER_PRIMESIEVE_CC
 
     #include <algorithm>
 
@@ -96,4 +96,4 @@ namespace celp {
         return m_Sieve[index];
     }
 
-#endif // _CELP_NUMBER_primesieve_CC
+#endif // _CELP_NUMBER_PRIMESIEVE_CC
