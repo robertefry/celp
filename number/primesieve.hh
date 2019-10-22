@@ -5,13 +5,13 @@
 
 namespace celp {
 
-    class psieve
+    class primesieve
     {
 
     public:
 
-        psieve(std::size_t size = 0);
-        ~psieve();
+        primesieve(std::size_t size = 0);
+        ~primesieve();
 
         void resize(std::size_t size);
         const bool* run();
@@ -32,12 +32,12 @@ namespace celp {
 
 }
 
-#ifndef _CELP_NUMBER_PSIEVE_CC
-#define _CELP_NUMBER_PSIEVE_CC
+#ifndef _CELP_NUMBER_primesieve_CC
+#define _CELP_NUMBER_primesieve_CC
 
     #include <algorithm>
 
-    celp::psieve::psieve(std::size_t size /* = 0 */)
+    celp::primesieve::primesieve(std::size_t size /* = 0 */)
         : m_Sieve(new bool[size])
         , m_IsValid(size == 0)
         , m_Size(size)
@@ -45,12 +45,12 @@ namespace celp {
         run();
     }
 
-    celp::psieve::~psieve()
+    celp::primesieve::~primesieve()
     {
         delete[] m_Sieve;
     }
 
-    void celp::psieve::resize(std::size_t size)
+    void celp::primesieve::resize(std::size_t size)
     {
         m_IsValid = false;
         delete[] m_Sieve;
@@ -58,7 +58,7 @@ namespace celp {
         m_Size = size;
     }
 
-    const bool* celp::psieve::run()
+    const bool* celp::primesieve::run()
     {
         if (m_Size >= 1) m_Sieve[0] = false;
         if (m_Size >= 2) m_Sieve[1] = false;
@@ -76,24 +76,24 @@ namespace celp {
         return m_Sieve;
     }
 
-    const bool celp::psieve::isValid() const
+    const bool celp::primesieve::isValid() const
     {
         return m_IsValid;
     }
 
-    const bool* celp::psieve::sieve() const
+    const bool* celp::primesieve::sieve() const
     {
         return m_Sieve;
     }
 
-    const std::size_t celp::psieve::size() const
+    const std::size_t celp::primesieve::size() const
     {
         return m_Size;
     }
 
-    const bool celp::psieve::operator[](std::size_t index)
+    const bool celp::primesieve::operator[](std::size_t index)
     {
         return m_Sieve[index];
     }
 
-#endif // _CELP_NUMBER_PSIEVE_CC
+#endif // _CELP_NUMBER_primesieve_CC
