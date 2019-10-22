@@ -3,7 +3,7 @@
 
 #include <set>
 
-namespace helper {
+namespace celp {
 
     template <typename _Tx>
     class prime
