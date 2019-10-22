@@ -16,7 +16,20 @@ namespace celp {
         static std::set<_Tx> m_KnownPrimes;
     };
 
+    template <typename _Tx>
+    static bool isPrime(const _Tx& num);
+
 }
+
+#ifndef _CELP_NUMBER_CC
+#define _CELP_NUMBER_CC
+
+    template <typename _Tx>
+    bool celp::isPrime(const _Tx& num) {
+        return celp::prime<_Tx>::isPrime(num);
+    }
+
+#endif // _CELP_NUMBER_CC
 
 #ifndef _CELP_NUMBER_PRIME_CC
 #define _CELP_NUMBER_PRIME_CC
