@@ -18,17 +18,17 @@ namespace celp {
 
 }
 
-#ifndef _HELPER_NUMBER_PRIME_CC
-#define _HELPER_NUMBER_PRIME_CC
+#ifndef _CELP_NUMBER_PRIME_CC
+#define _CELP_NUMBER_PRIME_CC
 
     #include <algorithm>
     #include <cmath>
 
     template <typename _Tx>
-    std::set<_Tx> helper::prime<_Tx>::m_KnownPrimes { 2 };
+    std::set<_Tx> celp::prime<_Tx>::m_KnownPrimes { 2 };
 
     template <typename _Tx>
-    bool helper::prime<_Tx>::isPrime(const _Tx& num)
+    bool celp::prime<_Tx>::isPrime(const _Tx& num)
     {
         if (num < 0) return isPrime(-num);
         if (num == 0 || num == 1) return false;
@@ -42,16 +42,16 @@ namespace celp {
     }
 
     template <typename _Tx>
-    bool helper::prime<_Tx>::isKnown(const _Tx& num)
+    bool celp::prime<_Tx>::isKnown(const _Tx& num)
     {
         auto found = std::find(m_KnownPrimes.begin(), m_KnownPrimes.end(), num);
         return found != m_KnownPrimes.end();
     }
 
     template <typename _Tx>
-    std::set<_Tx> helper::prime<_Tx>::known()
+    std::set<_Tx> celp::prime<_Tx>::known()
     {
         return m_KnownPrimes;
     }
 
-#endif // _HELPER_NUMBER_PRIME_CC
+#endif // _CELP_NUMBER_PRIME_CC
