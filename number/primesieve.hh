@@ -1,32 +1,33 @@
 
 #pragma once
 
+#include <cstddef>
+
 namespace celp {
 
-    template <typename _Tx>
     class psieve
     {
 
     public:
-        psieve(_Tx size = 0);
+        psieve(std::size_t size = 0);
         ~psieve();
 
     public:
-        void resize(_Tx size);
+        void resize(std::size_t size);
         const bool* run();
 
     public:
-        const bool operator[](_Tx index);
+        const bool operator[](std::size_t index);
 
     public:
         const bool isValid() const;
         const bool* sieve() const;
-        const _Tx size() const;
+        const std::size_t size() const;
     
     private:
         bool m_IsValid;
         bool* m_Sieve;
-        _Tx m_Size;
+        std::size_t m_Size;
 
     };
 
@@ -37,8 +38,7 @@ namespace celp {
 
     #include <algorithm>
 
-    template <typename _Tx>
-    celp::psieve<_Tx>::psieve(_Tx size /* = 0 */)
+    celp::psieve::psieve(std::size_t size /* = 0 */)
         : m_Sieve(new bool[size])
         , m_IsValid(size == 0)
         , m_Size(size)
@@ -46,14 +46,12 @@ namespace celp {
         run();
     }
 
-    template <typename _Tx>
-    celp::psieve<_Tx>::~psieve()
+    celp::psieve::~psieve()
     {
         delete[] m_Sieve;
     }
 
-    template <typename _Tx>
-    void celp::psieve<_Tx>::resize(_Tx size)
+    void celp::psieve::resize(std::size_t size)
     {
         m_IsValid = false;
         delete[] m_Sieve;
@@ -61,16 +59,15 @@ namespace celp {
         m_Size = size;
     }
 
-    template<typename _Tx>
-    const bool* celp::psieve<_Tx>::run()
+    const bool* celp::psieve::run()
     {
         if (m_Size >= 1) m_Sieve[0] = false;
         if (m_Size >= 2) m_Sieve[1] = false;
         if (m_Size >= 3) {
             std::fill(m_Sieve + 2, m_Sieve + m_Size, true);
-            for (_Tx i = 2; i < m_Size; ++i) {
+            for (std::size_t i = 2; i < m_Size; ++i) {
                 if (m_Sieve[i]) {
-                    for (_Tx j = i * 2; j < m_Size; j *= 2) {
+                    for (std::size_t j = i * 2; j < m_Size; j *= 2) {
                         m_Sieve[j] = false;
                     }
                 }
@@ -80,26 +77,22 @@ namespace celp {
         return m_Sieve;
     }
 
-    template <typename _Tx>
-    const bool celp::psieve<_Tx>::operator[](_Tx index)
+    const bool celp::psieve::operator[](std::size_t index)
     {
         return m_Sieve[index];
     }
 
-    template <typename _Tx>
-    const bool celp::psieve<_Tx>::isValid() const
+    const bool celp::psieve::isValid() const
     {
         return m_IsValid;
     }
 
-    template <typename _Tx>
-    const bool* celp::psieve<_Tx>::sieve() const
+    const bool* celp::psieve::sieve() const
     {
         return m_Sieve;
     }
 
-    template <typename _Tx>
-    const _Tx celp::psieve<_Tx>::size() const
+    const std::size_t celp::psieve::size() const
     {
         return m_Size;
     }
