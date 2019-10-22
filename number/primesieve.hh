@@ -60,13 +60,14 @@ namespace celp {
 
     const bool* celp::primesieve::run()
     {
+        if (isValid()) return;
         if (m_Size >= 1) m_Sieve[0] = false;
         if (m_Size >= 2) m_Sieve[1] = false;
         if (m_Size >= 3) {
             std::fill(m_Sieve + 2, m_Sieve + m_Size, true);
             for (std::size_t i = 2; i < m_Size; ++i) {
                 if (m_Sieve[i]) {
-                    for (std::size_t j = i * 2; j < m_Size; j *= 2) {
+                    for (std::size_t j = i * 2; j < m_Size; j += i) {
                         m_Sieve[j] = false;
                     }
                 }
