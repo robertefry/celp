@@ -9,22 +9,21 @@ namespace celp {
     {
 
     public:
+
         psieve(std::size_t size = 0);
         ~psieve();
 
-    public:
         void resize(std::size_t size);
         const bool* run();
 
-    public:
-        const bool operator[](std::size_t index);
-
-    public:
         const bool isValid() const;
         const bool* sieve() const;
         const std::size_t size() const;
+
+        const bool operator[](std::size_t index);
     
     private:
+
         bool m_IsValid;
         bool* m_Sieve;
         std::size_t m_Size;
@@ -77,11 +76,6 @@ namespace celp {
         return m_Sieve;
     }
 
-    const bool celp::psieve::operator[](std::size_t index)
-    {
-        return m_Sieve[index];
-    }
-
     const bool celp::psieve::isValid() const
     {
         return m_IsValid;
@@ -95,6 +89,11 @@ namespace celp {
     const std::size_t celp::psieve::size() const
     {
         return m_Size;
+    }
+
+    const bool celp::psieve::operator[](std::size_t index)
+    {
+        return m_Sieve[index];
     }
 
 #endif // _CELP_NUMBER_PSIEVE_CC
