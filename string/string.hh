@@ -10,21 +10,16 @@ namespace celp {
 
 }
 
-#ifndef _CELP_STRING_CC
-#define _CELP_STRING_CC
+#include <sstream>
 
-    #include <sstream>
-
-    template <typename _Itr>
-    std::string celp::toString(const _Itr& first, const _Itr& last)
-    {
-        std::stringstream ss;
-        ss << '[' << *first;
-        for (_Itr itr = first + 1; itr != last; ++itr) {
-            ss << ',' << *itr;
-        }
-        ss << ']';
-        return ss.str();
+template <typename _Itr>
+std::string celp::toString(const _Itr& first, const _Itr& last)
+{
+    std::stringstream ss;
+    ss << '[' << *first;
+    for (_Itr itr = first + 1; itr != last; ++itr) {
+        ss << ',' << *itr;
     }
-
-#endif // _CELP_STRING_CC
+    ss << ']';
+    return ss.str();
+}
